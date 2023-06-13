@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nrf.ufsp.${PackageName}.mapper.${ObjectName}Mapper">
+    <resultMap id="${instanceName}ResultMap" type="nrf.ufsp.${PackageName}.dto.${ObjectName}Dto">
+        
+    </resultMap>
+    
+    <select id="get${ObjectName}SearchList" parameterType="nrf.ufsp.${PackageName}.dto.${ObjectName}SearchDto" resultMap="${instanceName}ResultMap">
+        /*+ nrf.ufsp.${PackageName}.mapper.${ObjectName}Mapper.get${ObjectName}SearchList */
+        SELECT *
+        FROM ${TableName}
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+            limit #{pageSize}
+        offset (#{currentPage} - 1) * #{pageSize}
+    </select>
+
+    <select id="get${ObjectName}SearchListCount" parameterType="nrf.ufsp.${PackageName}.dto.${ObjectName}SearchDto" resultType="Integer">
+        /*+ nrf.ufsp.${PackageName}.mapper.${ObjectName}Mapper.get${ObjectName}SearchListCount */
+        SELECT
+            COUNT(*)
+        FROM ${TableName}
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+    </select>
+</mapper>

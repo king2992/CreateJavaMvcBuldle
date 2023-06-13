@@ -1,0 +1,12 @@
+<사용방법>
+
+1. C드라이브 밑에 UFSP_BUNDLE 폴더 복사
+ - C:\UFSP_BUNDLE < 이렇게 위치하도록 복사해주세요.
+
+2. UFSP_BUNDEL 폴더 안에 있는 execute.bat 파일 실행
+
+*result 폴더, template 폴더 삭제하면 안돼요.
+*DB 접속 정보는 DB.properties 파일 안에 있습니다. 마찬가지로 삭제하시면 안돼요.
+*execute.bat 실행 후 입력할 때 띄어쓰기 금지..ㅎ
+
+3. C:\jdk-11.0.1\bin>java -jar C:\UFSP_BUNDLE\execCreateJavaBundle.jar

@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nrf.ufsp.bizCommMng.mapper.BizteamCostTempMapper">
+    <resultMap id="bizteamCostTempResultMap" type="nrf.ufsp.bizCommMng.dto.BizteamCostTempDto">
+        
+    </resultMap>
+    
+    <select id="getBizteamCostTempSearchList" parameterType="nrf.ufsp.bizCommMng.dto.BizteamCostTempSearchDto" resultMap="bizteamCostTempResultMap">
+        /*+ nrf.ufsp.bizCommMng.mapper.BizteamCostTempMapper.getBizteamCostTempSearchList */
+        SELECT *
+        FROM UFSD_BIZTEAM_COST_TEMP
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+            limit #{pageSize}
+        offset (#{currentPage} - 1) * #{pageSize}
+    </select>
+
+    <select id="getBizteamCostTempSearchListCount" parameterType="nrf.ufsp.bizCommMng.dto.BizteamCostTempSearchDto" resultType="Integer">
+        /*+ nrf.ufsp.bizCommMng.mapper.BizteamCostTempMapper.getBizteamCostTempSearchListCount */
+        SELECT
+            COUNT(*)
+        FROM UFSD_BIZTEAM_COST_TEMP
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+    </select>
+</mapper>

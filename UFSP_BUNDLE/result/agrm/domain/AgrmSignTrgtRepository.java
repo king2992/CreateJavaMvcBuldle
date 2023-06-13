@@ -1,0 +1,26 @@
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+/**
+ * @Class Name : AgrmSignTrgtRepository
+ * Description : 협약서명대상 JPA 인터페이스 
+ *
+ * @author : 이진우
+ * @Since : 2023-05-13
+ * @version : 1.0
+ * @see
+ * <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+public interface AgrmSignTrgtRepository extends JpaRepository<AgrmSignTrgt, String> {
+
+
+}

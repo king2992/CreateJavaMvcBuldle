@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nrf.ufsp.agrm.mapper.AgrmSignTrgtMapper">
+    <resultMap id="agrmSignTrgtResultMap" type="nrf.ufsp.agrm.dto.AgrmSignTrgtDto">
+        
+    </resultMap>
+    
+    <select id="getAgrmSignTrgtSearchList" parameterType="nrf.ufsp.agrm.dto.AgrmSignTrgtSearchDto" resultMap="agrmSignTrgtResultMap">
+        /*+ nrf.ufsp.agrm.mapper.AgrmSignTrgtMapper.getAgrmSignTrgtSearchList */
+        SELECT *
+        FROM UFSD_AGRM_SIGN_TRGT
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+            limit #{pageSize}
+        offset (#{currentPage} - 1) * #{pageSize}
+    </select>
+
+    <select id="getAgrmSignTrgtSearchListCount" parameterType="nrf.ufsp.agrm.dto.AgrmSignTrgtSearchDto" resultType="Integer">
+        /*+ nrf.ufsp.agrm.mapper.AgrmSignTrgtMapper.getAgrmSignTrgtSearchListCount */
+        SELECT
+            COUNT(*)
+        FROM UFSD_AGRM_SIGN_TRGT
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+    </select>
+</mapper>

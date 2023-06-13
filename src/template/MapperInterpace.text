@@ -1,0 +1,26 @@
+
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+/**
+ * @author : ${writer}
+ * @version : 1.0
+ * @Class Name : ${ObjectName}Mapper
+ * Description : ${ObjectKorName} Mapper 클래스
+ * @Since : ${DATE}
+ * @see <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+@Mapper
+@Repository
+public interface ${ObjectName}Mapper {
+    List<${ObjectName}Dto> get${ObjectName}SearchList(${ObjectName}SearchDto ${instanceName}SearchDto);
+    int get${ObjectName}SearchListCount(${ObjectName}SearchDto ${instanceName}SearchDto);
+}

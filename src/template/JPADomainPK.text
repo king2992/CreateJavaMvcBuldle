@@ -1,0 +1,37 @@
+
+import lombok.*;
+import javax.persistence.*;
+import java.util.Date;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+/**
+ * @Class Name : ${ObjectName}
+ * Description : ${ObjectKorName} 도메인 PK 객체
+ *
+ * @author : ${writer}
+ * @Since : ${DATE}
+ * @version : 1.0
+ * @see
+ * <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+@Data
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
+public class ${ObjectName} implements Serializable{
+
+    @EmbeddedId
+    private ${ObjectName}PK ${instanceName}PK;
+
+    //PK 컬럼 작성
+
+}

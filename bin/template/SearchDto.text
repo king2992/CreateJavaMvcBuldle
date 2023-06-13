@@ -1,0 +1,28 @@
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author : ${writer}
+ * @version : 1.0
+ * @Class Name : ${ObjectName}SearchDto
+ * Description : ${ObjectName} 검색 DTO 클래스
+ * @Since : ${DATE}
+ * @see <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${ObjectName}SearchDto {
+    private int currentPage;
+    private int pageSize;
+}

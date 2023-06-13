@@ -1,0 +1,26 @@
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+/**
+ * @Class Name : ${ObjectName}Repository
+ * Description : ${ObjectKorName} JPA 인터페이스 
+ *
+ * @author : ${writer}
+ * @Since : ${DATE}
+ * @version : 1.0
+ * @see
+ * <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+public interface ${ObjectName}Repository extends JpaRepository<${ObjectName}, ${ObjectKeyType}> {
+
+
+}

@@ -1,0 +1,34 @@
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import nrf.ufsp.common.dto.CommDto;
+import java.util.Date;
+
+/**
+ * @author : ${writer}
+ * @version : 1.0
+ * @Class Name : ${ObjectName}Dto
+ * Description : ${ObjectKorName}  DTO 클래스
+ * @Since : ${DATE}
+ * @see <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+@Data
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ${ObjectName}Dto extends CommDto{
+
+    // Ctrl + ALT + L 누르면 자동 정렬
+    ${JavaDto}
+
+}

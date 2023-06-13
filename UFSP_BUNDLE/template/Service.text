@@ -1,0 +1,150 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import nrf.ufsp.common.Paging;
+import nrf.ufsp.support.ResultStatus;
+import nrf.ufsp.support.StatusEnum;
+import org.modelmapper.Conditions;
+import org.modelmapper.ModelMapper;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+import nrf.ufsp.${PackageName}.domain.${ObjectName};
+import nrf.ufsp.${PackageName}.domain.${ObjectName}Repository;
+import nrf.ufsp.${PackageName}.dto.${ObjectName}Dto;
+import nrf.ufsp.${PackageName}.dto.${ObjectName}SearchDto;
+import nrf.ufsp.${PackageName}.mapper.${ObjectName}Mapper;
+
+
+/**
+ * @author : ${writer}
+ * @version : 1.0
+ * @Class Name : ${ObjectName}Service
+ * Description : ${ObjectKorName} 서비스 클래스
+ * @Since : ${DATE}
+ * @see <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+@Service
+public class ${ObjectName}Service {
+    private final ModelMapper modelMapper;
+    private final ${ObjectName}Repository ${instanceName}Repository;
+
+    private final ${ObjectName}Mapper ${instanceName}Mapper;
+    /**
+     * ${ObjectKorName}를 등록한다.
+     * @param ${instanceName}SaveDto
+     * @return ${ObjectName} ( ${ObjectKorName})
+     * @exception
+     */
+    @Transactional
+    public  ResultStatus<${ObjectName}> ${instanceName}RegistExec(${ObjectName}Dto ${instanceName}SaveDto) {
+        Timestamp nowTimeStamp = Timestamp.valueOf(LocalDateTime.now());
+
+        ${ObjectName} ${instanceName} = modelMapper.map(${instanceName}SaveDto, ${ObjectName}.class);
+
+        ${ObjectName} saved${ObjectName} = ${instanceName}Repository.save(${instanceName});
+
+        ResultStatus<${ObjectName}> resultStatus = ResultStatus.<${ObjectName}>builder()
+                .status(StatusEnum.SUCCESS)
+                .message("저장이 완료되었습니다.")
+                .resultData(saved${ObjectName}).build();
+        
+        return resultStatus;
+
+    }
+
+    /**
+     * ${ObjectKorName} 수정
+     * @param ${ObjectKeyName} : ${ObjectKeyKorName}
+     * @param ${instanceName}SaveDto : 입력된 ${ObjectKorName}
+     * @return ${ObjectName}Dto (변경된 ${ObjectKorName})
+     * @exception IllegalArgumentException
+     */
+    @Transactional
+    public ResultStatus<${ObjectName}> ${instanceName}UpdtExec(${ObjectKeyType} ${ObjectKeyName}, ${ObjectName}Dto ${instanceName}SaveDto) {
+        Timestamp nowTimeStamp = Timestamp.valueOf(LocalDateTime.now());
+
+        ${ObjectName} ${instanceName} = ${instanceName}Repository.findById(${ObjectKeyName})
+                .orElseThrow(() -> new IllegalArgumentException("등록된 정보가 없습니다."));
+
+        ${instanceName}SaveDto.setLastModDt(nowTimeStamp);
+
+        modelMapper.map(${instanceName}SaveDto, ${instanceName});
+        modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
+          
+        ${ObjectName} saved${ObjectName} = ${instanceName}Repository.save(${instanceName});
+
+        ResultStatus<${ObjectName}> resultStatus = ResultStatus.<${ObjectName}>builder()
+        .status(StatusEnum.SUCCESS)
+        .message("수정이 완료되었습니다.")
+        .resultData(saved${ObjectName}).build();          
+
+        return resultStatus;
+    }
+
+    /**
+     * ${ObjectKorName} 삭제
+     * @param ${ObjectKeyName} : ${ObjectKeyKorName}
+     * @return 삭제된 행의 키값
+     * @exception IllegalArgumentException
+     */
+    @Transactional
+    public ResultStatus<${ObjectName}> ${instanceName}DeleteExec(${ObjectKeyType} ${ObjectKeyName}) {
+        ${ObjectName} ${instanceName} = ${instanceName}Repository.findById(${ObjectKeyName})
+                .orElseThrow(()->new IllegalArgumentException("등록된 정보가 없습니다."));
+        ${instanceName}Repository.delete(${instanceName});
+        
+        ResultStatus<${ObjectName}> resultStatus = ResultStatus.<${ObjectName}>builder()
+            .status(StatusEnum.SUCCESS)
+            .message("삭제가 완료되었습니다.")
+            .resultData("리턴 데이터 넣어주세요.").build();  
+        
+        return resultStatus;
+    }
+    
+    /**
+     * ${ObjectKorName} 목록 조회(검색)
+     * @param ${instanceName}SearchDto : 검색 DTO
+     * @return 목록 Json Data
+     * @exception JsonProcessingException
+     */
+    public ResultStatus<String> get${ObjectName}SearchList(${ObjectName}SearchDto ${instanceName}SearchDto) {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        int totalCount = ${instanceName}Mapper.get${ObjectName}SearchListCount(${instanceName}SearchDto);
+
+        Paging paging = new Paging(${instanceName}SearchDto.getCurrentPage(), ${instanceName}SearchDto.getPageSize(), totalCount);
+
+        data.put("${instanceName}List", ${instanceName}Mapper.get${ObjectName}SearchList(${instanceName}SearchDto));
+        data.put("pageable",paging);
+
+        String jsonList = null;
+        try {
+            jsonList = mapper.writeValueAsString(data);
+        } catch (JsonProcessingException e) {
+
+        }
+        ResultStatus<String> resultStatus = ResultStatus.<String>builder()
+            .status(StatusEnum.SUCCESS)
+            .message("조회완료.")
+            .resultData(jsonList).build();  
+        
+        return resultStatus;
+    }
+}

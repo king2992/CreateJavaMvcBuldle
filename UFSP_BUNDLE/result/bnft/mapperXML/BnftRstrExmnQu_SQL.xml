@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nrf.ufsp.bnft.mapper.BnftRstrExmnQuMapper">
+    <resultMap id="bnftRstrExmnQuResultMap" type="nrf.ufsp.bnft.dto.BnftRstrExmnQuDto">
+        
+    </resultMap>
+    
+    <select id="getBnftRstrExmnQuSearchList" parameterType="nrf.ufsp.bnft.dto.BnftRstrExmnQuSearchDto" resultMap="bnftRstrExmnQuResultMap">
+        /*+ nrf.ufsp.bnft.mapper.BnftRstrExmnQuMapper.getBnftRstrExmnQuSearchList */
+        SELECT *
+        FROM UFSD_BNFT_RSTR_EXMN_QU
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+            limit #{pageSize}
+        offset (#{currentPage} - 1) * #{pageSize}
+    </select>
+
+    <select id="getBnftRstrExmnQuSearchListCount" parameterType="nrf.ufsp.bnft.dto.BnftRstrExmnQuSearchDto" resultType="Integer">
+        /*+ nrf.ufsp.bnft.mapper.BnftRstrExmnQuMapper.getBnftRstrExmnQuSearchListCount */
+        SELECT
+            COUNT(*)
+        FROM UFSD_BNFT_RSTR_EXMN_QU
+        --WHERE ${searchConditionColumnNm} LIKE CONCAT('%',#{searchConditionVariableName},'%')
+    </select>
+</mapper>

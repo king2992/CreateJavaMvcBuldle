@@ -1,0 +1,74 @@
+package nrf.ufsp.member;
+
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
+import nrf.ufsp.${PackageName}.domain.${ObjectName};
+import nrf.ufsp.${PackageName}.dto.${ObjectName}Dto;
+import nrf.ufsp.${PackageName}.dto.${ObjectName}SearchDto;
+import nrf.ufsp.${PackageName}.service.${ObjectName}Service;
+
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * @author : ${writer}
+ * @version : 1.0
+ * @Class Name : ${ObjectName}Controller
+ * Description : ${ObjectKorName} 컨트롤 클래스
+ * @Since : ${DATE}
+ * @see <pre>
+ * ------------------------------------------------------------
+ * Modification Information
+ * ------------------------------------------------------------
+ * 수정일        수정자               수정내용
+ *
+ * ------------------------------------------------------------
+ * </pre>
+ */
+
+@Api(tags = "${ObjectKorName}")
+@RequiredArgsConstructor
+@RestController
+public class ${ObjectName}Controller {
+    private final ${ObjectName}Service ${instanceName}Service;
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", required = false, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "${ObjectKorName}를 생성한다.")
+    @PostMapping("/api/${auth}/${PackageName}/${instanceName}RegistExec")
+    public ResultStatus<${ObjectName}> ${instanceName}RegistExec(@RequestBody ${ObjectName}Dto ${instanceName}Dto){
+        return ${instanceName}Service.${instanceName}RegistExec(${instanceName}Dto);
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", required = false, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "${ObjectKorName}를 수정한다.")
+    @PutMapping("/api/${auth}/${PackageName}/${instanceName}UpdtExec/{${ObjectKeyName}}")
+    public ResultStatus<${ObjectName}> ${instanceName}UpdtExec(@PathVariable ${ObjectKeyType} ${ObjectKeyName}, @RequestBody ${ObjectName}Dto ${instanceName}Dto){
+        return ${instanceName}Service.${instanceName}UpdtExec(${ObjectKeyName}, ${instanceName}Dto);
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", required = false, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "${ObjectKorName}를 삭제한다.")
+    @DeleteMapping("/api/${auth}/${PackageName}/${instanceName}DeleteExec/{${ObjectKeyName}}")
+    public ResultStatus<String> ${instanceName}DeleteExec(@PathVariable ${ObjectKeyType} ${ObjectKeyName}){
+        return ${instanceName}Service.${instanceName}DeleteExec(${ObjectKeyName});
+    }
+    
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "X-AUTH-TOKEN", required = false, dataType = "String", paramType = "header")
+    })
+    @ApiOperation(value = "${ObjectKorName} 목록을 검색조건에 따라 조회한다")
+    @PostMapping("/api/${auth}/${PackageName}/get${ObjectName}SearchList")
+    public ResultStatus<String> get${ObjectName}SearchList(@RequestBody ${ObjectName}SearchDto ${instanceName}SearchDto) {
+
+        return ${instanceName}Service.get${ObjectName}SearchList(${instanceName}SearchDto);
+    }
+}
